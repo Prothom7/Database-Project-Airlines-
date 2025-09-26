@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <?php include 'dashboard.html'; ?> <!-- Navbar loaded first -->
+    <?php include 'dashboard.php'; ?> <!-- Navbar loaded first -->
 
     <?php include 'home.html'; ?> <!-- Page content below navbar -->
 

@@ -1,0 +1,121 @@
+/* Container styling */
+.view-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #222;
+}
+
+/* Minimalist and stylish form styling */
+
+.view-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.view-form label {
+    font-weight: 600;
+    font-size: 1.1em;
+    color: #222;
+    letter-spacing: 0.02em;
+}
+
+.view-form select {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1em;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    color: #333;
+    outline-offset: 2px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.view-form select:focus {
+    border-color: #7b1e3a;
+    background-color: #fff;
+}
+
+.view-form button {
+    width: 100%;
+    padding: 14px 0;
+    font-size: 1.1em;
+    font-weight: 600;
+    background-color: #7b1e3a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.view-form button:hover {
+    background-color: wheat;
+    color: #7b1e3a;
+}
+
+/* Table styles – Modern Classic */
+.table-display {
+    margin-top: 40px;
+    overflow-x: auto;
+    padding: 0 10px;
+}
+
+.table-display table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.table-display th,
+.table-display td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #e6e6e6;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.table-display th {
+    background-color: #f2f5f9;
+    color: #2c3e50;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: 0.85rem;
+}
+
+.table-display tr:last-child td {
+    border-bottom: none;
+}
+
+.table-display tr:hover {
+    background-color: #f7faff;
+    transition: background-color 0.3s ease;
+}
+
+/* Zebra striping */
+.table-display tr:nth-child(even) td {
+    background-color: #fafafa;
+}
+
+
+/* Error message styling */
+.table-display p {
+    color: #c00;
+    font-weight: 600;
+    font-size: 1.1em;
+    text-align: center;
+}

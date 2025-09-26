@@ -40,3 +40,11 @@ body {
 .dashboard-nav ul li a:hover {
     color: #f8f4e3;
 }
+
+.dashboard-nav ul li a.active {
+    background-color: #f8f4e3;
+    color: #7b1e3a;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
