@@ -43,7 +43,7 @@ body {
 
 .book-now-button {
     background-color: white;
-    color:black;
+    color: black;
     padding: 10px 22px;
     text-decoration: none;
     border-radius: 4px;
@@ -53,7 +53,8 @@ body {
 }
 
 .book-now-button:hover {
-    background-color: orange;
+    background-color: #7b1e3a;
+    color: white;
 }
 
 /* Features Section */
@@ -73,13 +74,19 @@ body {
     padding: 30px 20px;
     border: 1px solid #e2e2e2;
     border-radius: 6px;
+    opacity: 0.8;
+}
+
+.feature:hover {
+    opacity: 1;
+    transition: opacity 0.3s ease;
 }
 
 .feature img {
-    width: 50px;
-    height: 50px;
+    width: 200px;
+    height: 200px;
     margin-bottom: 15px;
-    opacity: 0.9;
+    opacity: 1;
 }
 
 .feature h3 {
@@ -92,45 +99,28 @@ body {
     color: #555;
 }
 
-/* Newsletter Section */
-.newsletter {
-    text-align: center;
-    background-color: #f0f0f0;
-    padding: 40px 20px;
+
+/* About Section */
+.about {
+    background-color: #ffffffd9;
+    padding: 50px 25px;
     border-radius: 8px;
+    margin-top: 40px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.newsletter h2 {
-    margin-bottom: 10px;
-    font-family: 'Georgia', serif;
+.about h2 {
     font-size: 1.8em;
+    margin-bottom: 20px;
     color: #222;
+    font-family: 'Georgia', serif;
 }
 
-.newsletter p {
+.about p {
     font-size: 1em;
-    color: #555;
-}
-
-.newsletter input[type="email"] {
-    padding: 10px;
-    width: 240px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-family: 'Arial', sans-serif;
-}
-
-.newsletter button {
-    padding: 10px 20px;
-    background-color: #222;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-family: 'Arial', sans-serif;
-    cursor: pointer;
-}
-
-.newsletter button:hover {
-    background-color: #444;
+    color: #444;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 20px auto;
 }
