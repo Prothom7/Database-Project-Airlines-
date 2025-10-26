@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2025 at 05:25 PM
+-- Generation Time: Oct 26, 2025 at 06:20 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -71,13 +71,13 @@ INSERT INTO `airports` (`airport_code`, `name`, `location`) VALUES
 (8801, 'Dhaka International Airport', 'Dhaka, Bangladesh'),
 (8802, 'Changi Airport', 'Singapore'),
 (8803, 'Heathrow Airport', 'London, UK'),
-(8804, 'JFK Intl', 'New York, USA'),
-(8805, 'Dubai Intl', 'Dubai, UAE'),
+(8804, 'JFK International', 'New York, USA'),
+(8805, 'Dubai International', 'Dubai, UAE'),
 (8806, 'Suvarnabhumi', 'Bangkok, Thailand'),
-(8807, 'Frankfurt Intl', 'Frankfurt, Germany'),
-(8808, 'Narita Intl', 'Tokyo, Japan'),
-(8809, 'Indira Gandhi Intl', 'Delhi, India'),
-(8810, 'Hamad Intl', 'Doha, Qatar'),
+(8807, 'Frankfurt International', 'Frankfurt, Germany'),
+(8808, 'Narita International', 'Tokyo, Japan'),
+(8809, 'Indira Gandhi International', 'Delhi, India'),
+(8810, 'Hamad International', 'Doha, Qatar'),
 (8811, 'KUET International Airport', 'Khulna, Bangladesh');
 
 -- --------------------------------------------------------
