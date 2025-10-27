@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2025 at 06:20 AM
+-- Generation Time: Oct 27, 2025 at 08:33 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -49,7 +49,12 @@ INSERT INTO `aircrafts` (`aircraft_id`, `model`, `capacity`, `maintenance_status
 (108, 'ATR 72', 70, 'Operational'),
 (109, 'Airbus A330', 260, 'Operational'),
 (110, 'Boeing 767', 220, 'Under Maintenance'),
-(111, 'Boeing 777', 350, 'Operational');
+(111, 'Boeing 777', 350, 'Operational'),
+(112, 'Boeing 737', 180, 'Operational'),
+(113, 'Airbus A320', 160, 'Under Maintenance'),
+(114, 'Boeing 777', 300, 'Operational'),
+(115, 'Embraer E190', 100, 'Operational'),
+(116, 'Airbus A350', 320, 'Scheduled Maintenanc');
 
 -- --------------------------------------------------------
 
@@ -78,7 +83,12 @@ INSERT INTO `airports` (`airport_code`, `name`, `location`) VALUES
 (8808, 'Narita International', 'Tokyo, Japan'),
 (8809, 'Indira Gandhi International', 'Delhi, India'),
 (8810, 'Hamad International', 'Doha, Qatar'),
-(8811, 'KUET International Airport', 'Khulna, Bangladesh');
+(8811, 'KUET International Airport', 'Khulna, Bangladesh'),
+(8812, 'John F. Kennedy International Airport', 'New York, USA'),
+(8813, 'Los Angeles International Airport', 'Los Angeles, USA'),
+(8814, 'Heathrow Airport', 'London, UK'),
+(8815, 'Haneda Airport', 'Tokyo, Japan'),
+(8816, 'Dubai International Airport', 'Dubai, UAE');
 
 -- --------------------------------------------------------
 
@@ -112,7 +122,12 @@ INSERT INTO `crew_members` (`crew_id`, `first_name`, `last_name`, `role`, `certi
 (610, 'Hasan', 'Tahiya', 'Flight Attendant', 'CPR', 107),
 (611, 'Mayesha', 'Rahman', 'Engineer', 'Maintenance Level 1', 105),
 (612, 'Elena', 'Petrova', 'Flight Attendant', 'CPR, Safety', 103),
-(613, 'Megha', 'Tania', 'Flight Attendant', 'CPR, Safety', 111);
+(613, 'Megha', 'Tania', 'Flight Attendant', 'CPR, Safety', 111),
+(614, 'Alice', 'Johnson', 'Flight Attendant', 'Safety, CPR', 112),
+(615, 'Mark', 'Davis', 'Flight Engineer', 'Engine Maintenance', 114),
+(616, 'Sophia', 'Kim', 'Cabin Crew', 'Customer Service', 113),
+(617, 'Ethan', 'Garcia', 'Flight Attendant', 'Safety, First Aid', 115),
+(618, 'Nina', 'Patel', 'Cabin Crew', 'Service Excellence', 116);
 
 -- --------------------------------------------------------
 
@@ -149,7 +164,12 @@ INSERT INTO `flights` (`flight_number`, `departure_airport`, `arrival_airport`, 
 (3013, 8803, 8806, '2025-10-13 09:00:00', '2025-10-13 13:30:00', 104),
 (3014, 8804, 8807, '2025-10-14 07:00:00', '2025-10-14 11:00:00', 105),
 (3015, 8805, 8808, '2025-10-15 12:00:00', '2025-10-15 16:00:00', 107),
-(3016, 8803, 8805, '2025-09-26 15:38:10', '2025-09-26 19:38:10', 111);
+(3016, 8803, 8805, '2025-09-26 15:38:10', '2025-09-26 19:38:10', 111),
+(3017, 8812, 8813, '2025-10-27 08:00:00', '2025-10-27 11:00:00', 112),
+(3018, 8813, 8814, '2025-10-28 09:30:00', '2025-10-28 17:00:00', 113),
+(3019, 8814, 8815, '2025-10-29 10:15:00', '2025-10-29 22:30:00', 114),
+(3020, 8815, 8816, '2025-10-30 07:45:00', '2025-10-30 14:15:00', 115),
+(3021, 8816, 8812, '2025-10-31 12:00:00', '2025-10-31 20:00:00', 116);
 
 -- --------------------------------------------------------
 
@@ -186,7 +206,12 @@ INSERT INTO `passengers` (`passengers_id`, `first_name`, `last_name`, `phone`, `
 (713, 'Priya', 'Sen', '01711112233', 'priya.sen@example.com', 'Gold'),
 (714, 'John', 'Carter', '01822223344', 'john.carter@example.com', 'Silver'),
 (715, 'Mei', 'Lin', '01933334455', 'mei.lin@example.com', 'Regular'),
-(716, 'Rubayet', 'Nabil', '01521741507', 'nabil@example.cpm', 'Regular');
+(716, 'Rubayet', 'Nabil', '01521741507', 'nabil@example.cpm', 'Regular'),
+(717, 'Emma', 'Wilson', '+1-555-1111', 'emma.wilson@gmail.com', 'Gold'),
+(718, 'Liam', 'Taylor', '+1-555-2222', 'liam.taylor@gmail.com', 'Silver'),
+(719, 'Olivia', 'Martinez', '+1-555-3333', 'olivia.martinez@gmail.com', 'Bronze'),
+(720, 'Noah', 'Lee', '+1-555-4444', 'noah.lee@gmail.com', 'None'),
+(721, 'Ava', 'Clark', '+1-555-5555', 'ava.clark@gmail.com', 'Gold');
 
 -- --------------------------------------------------------
 
@@ -222,7 +247,12 @@ INSERT INTO `pilots` (`pilot_id`, `first_name`, `last_name`, `license_number`, `
 (511, 'Sofia', 'Costa', 'LIC-PT-2019', 13, 'Captain', 103),
 (512, 'Marco', 'Rossi', 'LIC-IT-2020', 7, 'First Officer', 105),
 (513, 'Zarif', 'Naheean', 'LIC-BD-2027', 2, 'First Officer', 111),
-(514, 'Maruf', 'Shafiq', 'LIC-BD-1999', 15, 'Captain', 111);
+(514, 'Maruf', 'Shafiq', 'LIC-BD-1999', 15, 'Captain', 111),
+(515, 'James', 'Anderson', 'LIC12345', 12, 'Captain', 112),
+(516, 'Maria', 'Lopez', 'LIC67890', 8, 'First Officer', 113),
+(517, 'Robert', 'Brown', 'LIC24680', 15, 'Captain', 114),
+(518, 'Linda', 'Chen', 'LIC13579', 6, 'First Officer', 115),
+(519, 'Omar', 'Hassan', 'LIC98765', 10, 'Captain', 116);
 
 -- --------------------------------------------------------
 
@@ -258,7 +288,12 @@ INSERT INTO `reservations` (`reservation_id`, `passenger_id`, `flight_number`, `
 (9013, 713, 3013, '25A', '2025-10-01 06:15:00'),
 (9014, 714, 3014, '26B', '2025-10-02 02:45:00'),
 (9015, 715, 3015, '27C', '2025-10-02 08:00:00'),
-(9016, 716, 3016, 'C-23', '2025-09-26 15:10:16');
+(9016, 716, 3016, 'C-23', '2025-09-26 15:10:16'),
+(9017, 701, 3001, '12A', '2025-10-27 07:32:39'),
+(9018, 702, 3002, '14C', '2025-10-27 07:32:39'),
+(9019, 703, 3003, '9B', '2025-10-27 07:32:39'),
+(9020, 704, 3004, '22D', '2025-10-27 07:32:39'),
+(9021, 705, 3005, '5A', '2025-10-27 07:32:39');
 
 --
 -- Indexes for dumped tables

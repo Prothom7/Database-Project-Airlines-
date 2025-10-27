@@ -25,6 +25,7 @@
 
             // Predefined queries
             $queries = [
+                // ---------------- Existing Queries ----------------
                 "pilot_hours" => "
                     SELECT p.pilot_id, CONCAT(p.first_name, ' ', p.last_name) AS pilot_name,
                            YEAR(f.departure_time) AS flight_year,
@@ -61,8 +62,7 @@
                 ",
                 "long_flights" => "
                     SELECT f.flight_number, f.departure_time, f.arrival_time,
-                    TIMESTAMPDIFF(HOUR, f.departure_time, f.arrival_time) 
-                    AS flight_duration_hours
+                    TIMESTAMPDIFF(HOUR, f.departure_time, f.arrival_time) AS flight_duration_hours
                     FROM flights f
                     WHERE TIMESTAMPDIFF(HOUR, f.departure_time, f.arrival_time) > 4
                     ORDER BY flight_duration_hours DESC;
@@ -106,17 +106,81 @@
                     JOIN aircrafts ac ON flight_passenger_counts.aircraft_id = ac.aircraft_id
                     GROUP BY ac.model
                     ORDER BY avg_passengers DESC;
+                ",
+
+                // ---------------- NEW Queries ----------------
+
+                // 1. Set operation (UNION)
+                "aircrafts_and_airports" => "
+                    SELECT model AS name, 'Aircraft Model' AS type FROM aircrafts
+                    UNION
+                    SELECT name, 'Airport' FROM airports
+                    ORDER BY name;
+                ",
+
+                // 2. Set operation (Operational but Unused Aircrafts)
+                "unused_operational_aircrafts" => "
+                    SELECT a.aircraft_id, a.model
+                    FROM aircrafts a
+                    WHERE a.maintenance_status = 'Operational'
+                    AND a.aircraft_id NOT IN (SELECT aircraft_id FROM flights);
+                ",
+
+                // 3. String Search (LIKE)
+                "gmail_passengers" => "
+                    SELECT passengers_id, CONCAT(first_name, ' ', last_name) AS name, email
+                    FROM passengers
+                    WHERE email LIKE '%@gmail.com';
+                ",
+
+                // 4. LEFT JOIN (Passengers with or without reservations)
+                "passengers_with_flights" => "
+                    SELECT p.passengers_id, CONCAT(p.first_name, ' ', p.last_name) AS passenger_name, r.flight_number
+                    FROM passengers p
+                    LEFT JOIN reservations r ON p.passengers_id = r.passenger_id
+                    ORDER BY passenger_name;
+                ",
+
+                // 5. RIGHT JOIN (All flights with passengers if exist)
+                "flights_and_passengers" => "
+                    SELECT f.flight_number, CONCAT(p.first_name, ' ', p.last_name) AS passenger_name
+                    FROM reservations r
+                    RIGHT JOIN flights f ON r.flight_number = f.flight_number
+                    LEFT JOIN passengers p ON r.passenger_id = p.passengers_id
+                    ORDER BY f.flight_number;
+                ",
+
+                // 6. Combined: UNION + JOIN + String Filter
+                "gold_or_ny_passengers" => "
+                    SELECT p.first_name, p.last_name
+                    FROM passengers p
+                    WHERE p.frequently_flyer_status = 'Gold'
+                    UNION
+                    SELECT p.first_name, p.last_name
+                    FROM passengers p
+                    JOIN reservations r ON p.passengers_id = r.passenger_id
+                    JOIN flights f ON r.flight_number = f.flight_number
+                    JOIN airports a ON f.departure_airport = a.airport_code
+                    WHERE a.location = 'New York';
+                ",
+
+                // 7. String filtering with wildcard
+                "aircrafts_with_air" => "
+                    SELECT aircraft_id, model
+                    FROM aircrafts
+                    WHERE model LIKE '%Air%';
                 "
             ];
 
             $selected = $_POST["query_select"] ?? "";
-
             ?>
 
             <form class="query-form" method="post">
                 <label for="query_select">Choose a query:</label>
                 <select name="query_select" id="query_select">
                     <option value="">-- Select a Query --</option>
+
+                    <!-- Existing options -->
                     <option value="pilot_hours" <?= $selected == "pilot_hours" ? "selected" : "" ?>>Pilot Hours per Year</option>
                     <option value="top_airport" <?= $selected == "top_airport" ? "selected" : "" ?>>Airport with Most Arrivals</option>
                     <option value="most_used_aircraft" <?= $selected == "most_used_aircraft" ? "selected" : "" ?>>Most Used Aircraft Model</option>
@@ -127,6 +191,15 @@
                     <option value="maintenance_usage" <?= $selected == "maintenance_usage" ? "selected" : "" ?>>Aircraft Usage & Maintenance</option>
                     <option value="peak_hours" <?= $selected == "peak_hours" ? "selected" : "" ?>>Peak Departure Hours</option>
                     <option value="avg_load" <?= $selected == "avg_load" ? "selected" : "" ?>>Average Load per Aircraft</option>
+
+                    <!-- New options -->
+                    <option value="aircrafts_and_airports" <?= $selected == "aircrafts_and_airports" ? "selected" : "" ?>>Aircraft Models & Airport Names (UNION)</option>
+                    <option value="unused_operational_aircrafts" <?= $selected == "unused_operational_aircrafts" ? "selected" : "" ?>>Operational but Unused Aircrafts</option>
+                    <option value="gmail_passengers" <?= $selected == "gmail_passengers" ? "selected" : "" ?>>Passengers with Gmail</option>
+                    <option value="passengers_with_flights" <?= $selected == "passengers_with_flights" ? "selected" : "" ?>>Passengers with or without Flights (LEFT JOIN)</option>
+                    <option value="flights_and_passengers" <?= $selected == "flights_and_passengers" ? "selected" : "" ?>>Flights and Passengers (RIGHT JOIN)</option>
+                    <option value="gold_or_ny_passengers" <?= $selected == "gold_or_ny_passengers" ? "selected" : "" ?>>Gold Members or NY Departures (UNION)</option>
+                    <option value="aircrafts_with_air" <?= $selected == "aircrafts_with_air" ? "selected" : "" ?>>Aircrafts with 'Air' in Model</option>
                 </select>
 
                 <button type="submit" name="show_query">Show Query</button>
